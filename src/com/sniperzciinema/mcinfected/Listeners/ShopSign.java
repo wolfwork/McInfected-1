@@ -55,9 +55,9 @@ public class ShopSign implements Listener {
 							else
 							{
 								int cost = Integer.valueOf(costString.replaceAll("\\$", ""));
-								if (McInfected.getLobby().getIPlayer(player).getScore() >= cost)
+								if (McInfected.getLobby().getIPlayer(player).getStats().getScore() >= cost)
 								{
-									McInfected.getLobby().getIPlayer(player).setScore(McInfected.getLobby().getIPlayer(player).getScore() - cost);
+									McInfected.getLobby().getIPlayer(player).getStats().setScore(McInfected.getLobby().getIPlayer(player).getStats().getScore() - cost);
 									player.getInventory().addItem(itemStack);
 									player.sendMessage(McInfected.getMessanger().getMessage(true, Messages.Sign__Shop__Purchased, "<item>", itemStack.getItemMeta().getDisplayName()));
 									

@@ -45,6 +45,21 @@ public class DisguiseManager {
 	}
 	
 	/**
+	 * @return the disguises
+	 */
+	public Disguises getDisguises() {
+		return disguises;
+	}
+	
+	/**
+	 * @param disguises
+	 *          the disguises to set
+	 */
+	public void setDisguises(Disguises disguises) {
+		this.disguises = disguises;
+	}
+	
+	/**
 	 * Disguise the player
 	 * 
 	 * @param player

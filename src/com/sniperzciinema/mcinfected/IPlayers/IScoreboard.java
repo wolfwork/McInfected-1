@@ -130,17 +130,17 @@ public class IScoreboard implements Listener {
 		ob.setDisplayName("§E§l§nStats");
 		ob.getScore("§1").setScore(-1);
 		ob.getScore("§a§lKills:").setScore(-2);
-		ob.getScore("§a§f" + this.iPlayer.getKills()).setScore(-3);
+		ob.getScore("§a§f" + this.iPlayer.getStats().getKills()).setScore(-3);
 		ob.getScore("§4§lDeaths:").setScore(-4);
-		ob.getScore("§b§f" + this.iPlayer.getDeaths()).setScore(-5);
+		ob.getScore("§b§f" + this.iPlayer.getStats().getDeaths()).setScore(-5);
 		ob.getScore("§2").setScore(-6);
 		ob.getScore("§e§lWins:").setScore(-7);
-		ob.getScore("§c§f" + this.iPlayer.getWins()).setScore(-8);
+		ob.getScore("§c§f" + this.iPlayer.getStats().getWins()).setScore(-8);
 		ob.getScore("§b§lLosses:").setScore(-9);
-		ob.getScore("§d§f" + this.iPlayer.getLosses()).setScore(-10);
+		ob.getScore("§d§f" + this.iPlayer.getStats().getLosses()).setScore(-10);
 		ob.getScore("§3").setScore(-11);
 		ob.getScore("§6§lKillStreak:").setScore(-12);
-		ob.getScore("§e§f" + this.iPlayer.getKillStreak()).setScore(-13);
+		ob.getScore("§e§f" + this.iPlayer.getStats().getKillStreak()).setScore(-13);
 		ob.getScore("§4").setScore(-14);
 		
 		this.iPlayer.getPlayer().setScoreboard(sb);

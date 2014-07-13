@@ -10,7 +10,7 @@ import org.bukkit.entity.Player;
 import com.sniperzciinema.mcinfected.McInfected;
 
 
-public class StatsIPlayer {
+public class Stats {
 	
 	private UUID	uuid;
 	
@@ -19,17 +19,17 @@ public class StatsIPlayer {
 	private int		time	= -1;
 	private int		wins	= -1, losses = -1;
 	
-	public StatsIPlayer(OfflinePlayer op)
+	public Stats(OfflinePlayer op)
 	{
 		this.uuid = op.getUniqueId();
 	}
 	
-	public StatsIPlayer(Player player)
+	public Stats(Player player)
 	{
 		this.uuid = player.getUniqueId();
 	}
 	
-	public StatsIPlayer(UUID uuid)
+	public Stats(UUID uuid)
 	{
 		this.uuid = uuid;
 	}

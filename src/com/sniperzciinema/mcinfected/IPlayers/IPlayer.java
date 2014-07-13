@@ -1,7 +1,6 @@
 
 package com.sniperzciinema.mcinfected.IPlayers;
 
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -39,14 +38,13 @@ public class IPlayer {
 	private IMenus			iMenus;
 	private ItemStack[]	inventory;
 	private IScoreboard	iScoreboard;
-	private int					kills	= -1, deaths = -1, killStreak = -1;
-	private int					score	= -1;
-	private int					time	= -1;
-	private int					wins	= -1, losses = -1;
+	
 	private int					level;
 	private Lobby				lobby;
 	private Location		origionalLocation;
 	private Player			player;
+	
+	private Stats				stats;
 	
 	private IPlayer			lastDamager;
 	
@@ -72,6 +70,8 @@ public class IPlayer {
 		this.hunger = this.player.getFoodLevel();
 		this.iScoreboard = new IScoreboard(this);
 		this.iMenus = new IMenus(this);
+		
+		this.stats = new Stats(player);
 		
 		player.setLevel(0);
 		player.setExp(0.99F);
@@ -121,7 +121,7 @@ public class IPlayer {
 	 * this player dies
 	 */
 	public void die() {
-		setDeaths(getDeaths() - 1);
+		stats.setDeaths(stats.getDeaths() - 1);
 		
 		setLastDamager(null);
 		
@@ -166,25 +166,6 @@ public class IPlayer {
 	 */
 	public ItemStack[] getArmor() {
 		return this.armor;
-	}
-	
-	/**
-	 * @return the Deaths
-	 */
-	public int getDeaths() {
-		if (this.deaths == -1)
-			if (McInfected.getSettings().isMySQLEnabled())
-				try
-				{
-					this.deaths = McInfected.getMySQLManager().getInt("McInfected", "Deaths", this.player.getUniqueId());
-				}
-				catch (SQLException e)
-				{
-					this.deaths = 0;
-				}
-			else
-				this.deaths = McInfected.getFileManager().getPlayers().getInt(this.player.getUniqueId() + ".Deaths");
-		return this.deaths;
 	}
 	
 	/**
@@ -244,45 +225,6 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @return the Kills
-	 */
-	public int getKills() {
-		if (this.kills == -1)
-			if (McInfected.getSettings().isMySQLEnabled())
-				try
-				{
-					this.kills = McInfected.getMySQLManager().getInt("McInfected", "Kills", this.player.getUniqueId());
-				}
-				catch (SQLException e)
-				{
-					this.kills = 0;
-				}
-			else
-				this.kills = McInfected.getFileManager().getPlayers().getInt(this.player.getUniqueId() + ".Kills");
-		
-		return this.kills;
-	}
-	
-	/**
-	 * @return the KillStreak
-	 */
-	public int getKillStreak() {
-		if (this.killStreak == -1)
-			if (McInfected.getSettings().isMySQLEnabled())
-				try
-				{
-					this.killStreak = McInfected.getMySQLManager().getInt("McInfected", "KillStreak", this.player.getUniqueId());
-				}
-				catch (SQLException e)
-				{
-					this.killStreak = 0;
-				}
-			else
-				this.killStreak = McInfected.getFileManager().getPlayers().getInt(this.player.getUniqueId() + ".KillStreak");
-		return this.killStreak;
-	}
-	
-	/**
 	 * @param team
 	 * @return the teams kit
 	 */
@@ -305,25 +247,6 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @return the Losses
-	 */
-	public int getLosses() {
-		if (this.losses == -1)
-			if (McInfected.getSettings().isMySQLEnabled())
-				try
-				{
-					this.losses = McInfected.getMySQLManager().getInt("McInfected", "Losses", this.player.getUniqueId());
-				}
-				catch (SQLException e)
-				{
-					this.losses = 0;
-				}
-			else
-				this.losses = McInfected.getFileManager().getPlayers().getInt(this.player.getUniqueId() + ".Losses");
-		return this.losses;
-	}
-	
-	/**
 	 * @return the origionalLocation
 	 */
 	public Location getOrigionalLocation() {
@@ -338,26 +261,6 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @return the Score
-	 */
-	public int getScore() {
-		if (this.score == -1)
-			if (McInfected.getSettings().isMySQLEnabled())
-				try
-				{
-					this.score = McInfected.getMySQLManager().getInt("McInfected", "Score", this.player.getUniqueId());
-				}
-				catch (SQLException e)
-				{
-					this.score = 0;
-				}
-			else
-				this.score = McInfected.getFileManager().getPlayers().getInt(this.player.getUniqueId() + ".Score");
-		
-		return this.score;
-	}
-	
-	/**
 	 * @return the team
 	 */
 	public Team getTeam() {
@@ -365,48 +268,10 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @return the Time
-	 */
-	public long getTime() {
-		if (this.time == -1)
-			if (McInfected.getSettings().isMySQLEnabled())
-				try
-				{
-					this.time = McInfected.getMySQLManager().getInt("McInfected", "Time", this.player.getUniqueId());
-				}
-				catch (SQLException e)
-				{
-					this.time = 0;
-				}
-			else
-				this.time = McInfected.getFileManager().getPlayers().getInt(this.player.getUniqueId() + ".Time");
-		return this.time;
-	}
-	
-	/**
 	 * @return the vote
 	 */
 	public Arena getVote() {
 		return this.vote;
-	}
-	
-	/**
-	 * @return the Wins
-	 */
-	public int getWins() {
-		if (this.wins == -1)
-			if (McInfected.getSettings().isMySQLEnabled())
-				try
-				{
-					this.wins = McInfected.getMySQLManager().getInt("McInfected", "Wins", this.player.getUniqueId());
-				}
-				catch (SQLException e)
-				{
-					this.wins = 0;
-				}
-			else
-				this.wins = McInfected.getFileManager().getPlayers().getInt(this.player.getUniqueId() + ".Wins");
-		return this.wins;
 	}
 	
 	/**
@@ -443,7 +308,7 @@ public class IPlayer {
 	 * this player gets a kill
 	 */
 	public void kill() {
-		setKills(this.kills + 1);
+		getStats().setKills(getStats().getKills() + 1);
 	}
 	
 	/**
@@ -577,25 +442,6 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @param Deaths
-	 *          the Deaths to set
-	 */
-	public void setDeaths(int Deaths) {
-		this.deaths = Deaths;
-		if (McInfected.getSettings().isMySQLEnabled())
-			try
-			{
-				McInfected.getMySQLManager().update("McInfected", "Deaths", this.deaths, this.player.getUniqueId());
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		else
-			McInfected.getFileManager().getPlayers().set(this.player.getUniqueId() + ".Deaths", this.deaths);
-	}
-	
-	/**
 	 * @param exp
 	 *          the exp to set
 	 */
@@ -660,46 +506,6 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @param Kills
-	 *          the Kills to set
-	 */
-	public void setKills(int kills) {
-		this.kills = kills;
-		
-		if (McInfected.getSettings().isMySQLEnabled())
-			try
-			{
-				McInfected.getMySQLManager().update("McInfected", "Kills", this.kills, this.player.getUniqueId());
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		else
-			McInfected.getFileManager().getPlayers().set(this.player.getUniqueId() + ".Kills", this.kills);
-	}
-	
-	/**
-	 * @param KillStreak
-	 *          the KillStreak to set
-	 */
-	public void setKillStreak(int KillStreak) {
-		this.killStreak = KillStreak;
-		
-		if (McInfected.getSettings().isMySQLEnabled())
-			try
-			{
-				McInfected.getMySQLManager().update("McInfected", "KillStreak", this.killStreak, this.player.getUniqueId());
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		else
-			McInfected.getFileManager().getPlayers().set(this.player.getUniqueId() + ".KillStreak", this.killStreak);
-	}
-	
-	/**
 	 * Set a kit
 	 * 
 	 * @param team
@@ -729,25 +535,6 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @param Losses
-	 *          the Losses to set
-	 */
-	public void setLosses(int Losses) {
-		this.losses = Losses;
-		if (McInfected.getSettings().isMySQLEnabled())
-			try
-			{
-				McInfected.getMySQLManager().update("McInfected", "Losses", this.losses, this.player.getUniqueId());
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		else
-			McInfected.getFileManager().getPlayers().set(this.player.getUniqueId() + ".Losses", this.losses);
-	}
-	
-	/**
 	 * @param origionalLocation
 	 *          the origionalLocation to set
 	 */
@@ -764,26 +551,6 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @param Score
-	 *          the Score to set
-	 */
-	public void setScore(int score) {
-		this.score = score;
-		
-		if (McInfected.getSettings().isMySQLEnabled())
-			try
-			{
-				McInfected.getMySQLManager().update("McInfected", "Score", this.score, this.player.getUniqueId());
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		else
-			McInfected.getFileManager().getPlayers().set(this.player.getUniqueId() + ".Score", this.score);
-	}
-	
-	/**
 	 * @param team
 	 *          the team to set
 	 */
@@ -792,49 +559,11 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @param Time
-	 *          the Time to set
-	 */
-	public void setTime(int Time) {
-		this.time = Time;
-		if (McInfected.getSettings().isMySQLEnabled())
-			try
-			{
-				McInfected.getMySQLManager().update("McInfected", "Time", this.time, this.player.getUniqueId());
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		else
-			McInfected.getFileManager().getPlayers().set(this.player.getUniqueId() + ".Time", this.time);
-	}
-	
-	/**
 	 * @param vote
 	 *          the vote to set
 	 */
 	public void setVote(Arena vote) {
 		this.vote = vote;
-	}
-	
-	/**
-	 * @param Wins
-	 *          the Wins to set
-	 */
-	public void setWins(int Wins) {
-		this.wins = Wins;
-		if (McInfected.getSettings().isMySQLEnabled())
-			try
-			{
-				McInfected.getMySQLManager().update("McInfected", "Wins", this.wins, this.player.getUniqueId());
-			}
-			catch (SQLException e)
-			{
-				e.printStackTrace();
-			}
-		else
-			McInfected.getFileManager().getPlayers().set(this.player.getUniqueId() + ".Wins", this.wins);
 	}
 	
 	/**
@@ -865,6 +594,21 @@ public class IPlayer {
 	 */
 	public void setLastDamager(IPlayer lastDamager) {
 		this.lastDamager = lastDamager;
+	}
+	
+	/**
+	 * @return the stats
+	 */
+	public Stats getStats() {
+		return stats;
+	}
+	
+	/**
+	 * @param stats
+	 *          the stats to set
+	 */
+	public void setStats(Stats stats) {
+		this.stats = stats;
 	}
 	
 }
