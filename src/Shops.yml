@@ -1,0 +1,37 @@
+#default Shops.yml - Last edited in 1.0.0# #
+# Infected's Item Codes
+# ==============================
+# gun:<Gun name>
+# crackshot:<Gun name>
+# ---------------------
+# id:<Item Id or Name>
+# item:<Item Id or Name>
+# ---------------------
+# data:<Item Durability>
+# ---------------------
+# amount:<Amount>
+# quantity:<Amount>
+# ---------------------
+# enchant:<Enchantment Id or Name>-<Enchantment Level>
+# enchantment:<Enchantment Id or Name>-<Enchantment Level>
+# ---------------------
+# name:<Item Name>
+# title:<Item Name>
+# ---------------------
+# lore:<Line_1|Line_2>
+# ---------------------
+# owner:<Player Name> - Used on Skulls
+# player:<Player Name> - Used on Skulls
+# ---------------------
+# color:<red>,<green>,<blue> - Used on Leather Armor(http://www.colorschemer.com/online.html)
+# colour:<red>,<green>,<blue> - Used on Leather Armor(http://www.colorschemer.com/online.html)
+# #
+# Examples:
+# id:397 data:3 amount:1 owner:Notch
+# id:269 enchantment:32-3 enchantment:2 name:Dwarf lore:Diggy|Diggy|Hole
+# id:299 color:255,204,51 name:Orange_ChestPlate
+# --------------------- 
+# You can use "/Infected Admin Code" To return the code for the item in your hand
+# #
+Bow_Of_Kick: 'item:bow name:&aBow_&fOf_&eKick lore:Knock you enemies down|And keep on fighting enchant:knockback-2'
+Knockback_Sword: id:276 lore:&4Destroy your enemies|&cDefend your friends enchant:49'

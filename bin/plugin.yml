@@ -1,0 +1,75 @@
+name: McInfected
+description: COD Infection for Minecraft
+main: com.sniperzciinema.mcinfected.McInfected
+version: 1.0.0
+author: Bimmr6696
+
+softdepend: [DisguiseCraft, iDisguise, LibsDisguises, Factions, mcMMO]
+
+# #################################################
+
+commands:
+
+  McInfected:
+    description: McInfected''s basic command
+    aliases: [mc, infected, inf, mcinf, mcinfected]
+
+# #################################################
+
+permissions:
+# Default Permissions
+  McInfected.join:
+    default: true
+    children:
+      McInfected.Leave: true
+      McInfected.Arenas: true
+      McInfected.Help: true
+      McInfected.Vote: true
+      McInfected.Kit: true
+      
+#Admin Permissions
+  McInfected.Admin.*:
+    default: op
+    children:
+      McInfected.Admin: true
+      McInfected.Admin.Start: true
+      McInfected.Admin.End: true
+      McInfected.Admin.Reload: true
+      McInfected.Admin.ItemCode: true
+      McInfected.Admin.Edit: true
+      McInfected.Admin.Files: true
+      
+# Setup Permissions
+  McInfected.Setup.*:
+    default: op
+    children:
+      McInfected.Setup.Create: true
+      McInfected.Setup.Remove: true
+      McInfected.Setup.SetLobby: true
+      McInfected.Setup.SetSpawn: true
+
+# Kit Permissions
+  McInfected.Kits.*:
+    default: op
+    children:
+      McInfected.Kits.Human.*: true
+      McInfected.Kits.Zombie.*: true
+
+# Sign Permissions
+  McInfected.Sign.*:
+    default: op
+    children:
+      McInfected.Sign.CommandSet.*: true
+      McInfected.Sign.Command.*: true
+      McInfected.Sign.Shop.*: true
+      
+# Setup Permissions
+  McInfected.Setup.*:
+    default: op
+    children:
+      McInfected.Setup.CommandSet.*: true
+      McInfected.Setup.Command.*: true
+      McInfected.Setup.Shop.*: true
+      McInfected.Setup.Create: true
+      McInfected.Setup.SetSpawn: true
+      McInfected.Setup.SetLobby: true

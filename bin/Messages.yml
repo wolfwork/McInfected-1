@@ -1,0 +1,90 @@
+#default Messages.yml - Last Edited in v0.0.1
+Format:
+  Prefix: '&c&l[&aMcInfected&c&l] '
+  Header: '&4&m-----=========&f&m&l[[&x <title> &f&m&l]]&4&m=========-----'
+  Line: '&4&m-----=========-=-=-=-=-=-=-=-==========-----'
+Command:
+  Create: '&aSuccessfully create the arena: &f<arena>&a!'
+  Game:
+    Joined: '&a<player> &ehas joined the game!'
+    Left: '&c<player> &ehas left the game!'
+  Join: '&aYou &ehave joined the game!'
+  Leave: '&cYou &ehave left the game!'
+  SetLobby: '&aSuccessfully set the &elobby''s &alocation!'
+  SetSpawn: '&aSuccessfully set a spawn for &e<team>!'
+  End: '&cYou &ehave forced the game to end!'
+  Start: '&aYou &ehave forced the game to start!'
+  Reloaded: '&aYou &ehave reloaded McInfected'
+Error:
+  Arena:
+    Already Exists: '&cOpps, that arena already exists!'
+    No Valid Arenas: '&cOpps, looks like there''s no valid arenas!'
+  Command:
+    Not A Player: '&cOpps, Looks like you''re not a player!'
+    Not Enough Players: '&cOpps, Theres not enough players!'
+    Unkown: '&cOpps, That''s not a &aMcInfected &ccommand!'
+  Game:
+    Already In A Game: '&cOpps, you''re already in a game!'
+    Already Started: '&cOpps, The game has already started!'
+    Not Enough Players: '&cOpps, There''s not enough players to continue!'
+    Not In A Game: '&cOpps, Looks like you''re not even in a game!'
+    Not Started:  '&cOpps, Looks like the game hasn''t even started yet!'
+  Lobby:
+    No Location: '&cOpps, No lobby location has been set!'
+  Misc:
+    Invalid Permissions: '&cOpps, Looks like your don''t have the right permissions!'
+    Cant Use Command: '&cOpps, Looks like you can''t use this command'
+  Sign:
+    CommandSet:
+      Doesnt Exist: '&cOpps, Looks like that CommandSet doesn''t exist!'
+    Shop:
+      Not Enough: '&cOpps, Looks like you don''t have enough &f<currency>!'
+Game:
+  Arena:
+    Chosen: '&eThe game will be played on: &c<arena>&e!'
+  Infected: '&e<player> &chas become Infected with the virus!'
+  Infecting: '&eThe virus will soon be released'
+  Voting: '&eVote for your favorite arena!'
+  Over:
+    Notification: '&eThe game has ended!'
+    Humans Win: '&aThe Humans have survived!'
+    Zombies Win: '&cAll Humans have been infected!'
+  Time:
+    Voting: 'Voting ends in &f<time>'
+    Infecting: '&eThe virus will be released in &f<time>'
+    PreGame: '&eGame starts in &f<time>'
+    Game: '&eGame ends in &f<time>'
+    Measurements:
+      Second: 'Second'
+      Seconds: 'Seconds'
+      Minute: 'Minute'
+      Minutes: 'Minutes'
+  Voted: '&e<player> &ahas voted for &c<arena>'
+Menu:
+  Kit:
+    Choose: '&aClick to choose this kit'
+    Chosen: '&aYou''ve chosen &e<kit> as a kit'
+    Return: '&cReturn to the Team selection'
+  Team:
+    Choose: '&aClick to view this team''s kits'
+  Vote:
+    Choose: '&aClick to vote for this arena'
+    Random: '&aClick &bTo &cChoose &dA &eRandom &fArena'
+Picture:
+  Human:
+    To Win: '&aSurvive...'
+    You: '&eYou are a Human'
+  Infected:
+    To Win: '&aInfect all Humans...'
+    You: '&eYou are an Infected'
+Death Messages:
+  Human:
+    Sword: '&c<killed> has been infected by &a<killer>'
+    Bow: '&c<killed> has been shot by &a<killer>'
+    Potion: '&c<killed> has been exploded by &a<killer>'
+    Other: '&a<killer> has assisted in killing &c<killed>'
+  Zombie:
+    Sword: '&c<killed> has been killed by &a<killer>'
+    Bow: '&c<killed> has been shot by &a<killer>'
+    Potion: '&c<killed> has been exploded by &a<killer>'
+    Other: '&a<killer> has assisted in killing &c<killed>'

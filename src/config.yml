@@ -1,0 +1,23 @@
+#default Config.yml - Last Edited in v1.0.0
+
+Disguise Support: true
+
+MySQL:
+  Enable: falsed
+  Host: 127.0.0.1
+  Port: 3306
+  Database: minecraft
+  Username: user
+  Password: pass
+Time:
+  Voting: 20
+  Pre-Game: 5
+  Infecting: 20
+  Game: 500
+Game:
+  Infecting:
+    Alpha Percent: 0.25
+Updates:
+  Check: true
+  Download: false
+Automatic Start Players: 2

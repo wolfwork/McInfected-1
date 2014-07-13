@@ -1,0 +1,62 @@
+# default Kits.yml - Last Edited in 1.0.0
+# #
+# For help with codes please look here: https://github.com/SniperzCiinema/McInfected/wiki/Codes
+# --------------------- 
+# You can use "/Infected Admin Code" To return the code for the item in your hand
+# #
+Human:
+  Guard:
+    Icon: id:268
+    Inventory:
+    - id:8
+    Armor:
+      Helmet: id:306
+      Chestplate: id:303
+      Leggings: id:304
+      Boots: id:305
+    Potions:
+    - '22,999999,1'
+    Disguise: Villager
+    Description:
+    - '&fBlend in to the crowd'
+    - '&fand keep on running!'
+Zombie:
+  Zombie:
+    Icon: id:367
+    Inventory:
+    - id:8
+    Armor:
+      Helmet: id:298
+      Chestplate: id:299
+      Leggings: id:300
+      Boots: id:305
+    Disguise: Zombie
+    Description:
+    - '&cBbbbllllaahahhhh'
+  Skeleton:
+    Icon: id:367
+    Inventory:
+    - 'id:262 enchantment:51 enchantment:49'
+    - 'id:261 amount:1'
+    Armor:
+      Helmet: id:298
+      Chestplate: 'id:299 enchantment:7'
+      Leggings: id:300
+      Boots: id:305
+    Disguise: Skeleton
+    Description:
+    - '&cSticks and Bones'
+  Witch:
+    Icon: id:280
+    Inventory:
+    - 'id:373 potion:Speed,10,2'
+    - 'id:373 potion:Slow,10,2,true'
+    - 'id:261 amount:1'
+    Armor:
+      Helmet: id:298
+      Chestplate: 'id:299 enchantment:7'
+      Leggings: id:300
+      Boots: id:305
+    Disguise: Witch
+    Description:
+    - '&cPotions and things'
