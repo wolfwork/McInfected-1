@@ -71,13 +71,13 @@ public class KitManager {
 					createKit(kitName, Team.Human);
 					McInfected.getPlugin().getLogger().log(Level.INFO, "Loaded Human Kit: " + kitName);
 				}
-		// Load Zombie Kits
-		if (McInfected.getFileManager().getKits().getConfigurationSection("Zombie") != null)
-			for (String kitName : McInfected.getFileManager().getKits().getConfigurationSection("Zombie").getKeys(true))
+		// Load Infected Kits
+		if (McInfected.getFileManager().getKits().getConfigurationSection("Infected") != null)
+			for (String kitName : McInfected.getFileManager().getKits().getConfigurationSection("Infected").getKeys(true))
 				if (!kitName.contains("."))
 				{
-					createKit(kitName, Team.Zombie);
-					McInfected.getPlugin().getLogger().log(Level.INFO, "Loaded Zombie Kit: " + kitName);
+					createKit(kitName, Team.Infected);
+					McInfected.getPlugin().getLogger().log(Level.INFO, "Loaded Infected Kit: " + kitName);
 				}
 	}
 	

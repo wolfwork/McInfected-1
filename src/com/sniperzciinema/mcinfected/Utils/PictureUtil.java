@@ -28,11 +28,11 @@ public class PictureUtil {
 	}
 	
 	/**
-	 * Player.sendMessage(Pictures.getZombie())
+	 * Player.sendMessage(Pictures.getInfected())
 	 * 
-	 * @return A zombie face using utf-8 characters
+	 * @return A Infected face using utf-8 characters
 	 */
-	public static String[] getZombie() {
+	public static String[] getInfected() {
 		String[] face = { "", "", "", "", "", "", "", "", "", "" };
 		String block = "▓";
 		face[0] = "";

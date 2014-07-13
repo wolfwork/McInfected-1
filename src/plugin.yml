@@ -53,7 +53,7 @@ permissions:
     default: op
     children:
       McInfected.Kits.Human.*: true
-      McInfected.Kits.Zombie.*: true
+      McInfected.Kits.Infected.*: true
 
 # Sign Permissions
   McInfected.Sign.*:

@@ -21,7 +21,7 @@ public class Arena {
 	private String						name;
 	
 	private int								votes;
-	private ArrayList<Coord>	zombieSpawns;
+	private ArrayList<Coord>	InfectedSpawns;
 	
 	public Arena(String name)
 	{
@@ -29,7 +29,7 @@ public class Arena {
 		
 		// Create Spawn Lists
 		this.humanSpawns = new ArrayList<Coord>();
-		this.zombieSpawns = new ArrayList<Coord>();
+		this.InfectedSpawns = new ArrayList<Coord>();
 		
 		// Load Creators
 		if (McInfected.getFileManager().getArenas().getString(getName() + ".Creator") != null)
@@ -44,9 +44,9 @@ public class Arena {
 			for (String string : McInfected.getFileManager().getArenas().getStringList(getName() + ".Spawns.Humans"))
 				this.humanSpawns.add(new Coord(string));
 		
-		if (!McInfected.getFileManager().getArenas().getStringList(getName() + ".Spawns.Zombies").isEmpty())
-			for (String string : McInfected.getFileManager().getArenas().getStringList(getName() + ".Spawns.Zombies"))
-				this.zombieSpawns.add(new Coord(string));
+		if (!McInfected.getFileManager().getArenas().getStringList(getName() + ".Spawns.Infecteds").isEmpty())
+			for (String string : McInfected.getFileManager().getArenas().getStringList(getName() + ".Spawns.Infecteds"))
+				this.InfectedSpawns.add(new Coord(string));
 	}
 	
 	/**
@@ -67,18 +67,18 @@ public class Arena {
 	 */
 	public void addSpawn(Coord coord) {
 		addHumanSpawn(coord);
-		addZombieSpawn(coord);
+		addInfectedSpawn(coord);
 	}
 	
 	/**
-	 * Add a zombie spawn
+	 * Add a Infected spawn
 	 * 
 	 * @param coord
 	 */
-	public void addZombieSpawn(Coord coord) {
-		ArrayList<Coord> spawns = getZombieSpawns();
+	public void addInfectedSpawn(Coord coord) {
+		ArrayList<Coord> spawns = getInfectedSpawns();
 		spawns.add(coord);
-		setZombieSpawns(spawns);
+		setInfectedSpawns(spawns);
 	}
 	
 	/**
@@ -113,7 +113,7 @@ public class Arena {
 	 * @return the all spawns
 	 */
 	public ArrayList<Coord> getSpawns() {
-		ArrayList<Coord> spawns = this.zombieSpawns;
+		ArrayList<Coord> spawns = this.InfectedSpawns;
 		spawns.addAll(this.humanSpawns);
 		return spawns;
 	}
@@ -123,7 +123,7 @@ public class Arena {
 	 * @return the spawns for the team
 	 */
 	public ArrayList<Coord> getSpawns(Team team) {
-		ArrayList<Coord> spawns = team == Team.Zombie ? this.zombieSpawns : this.humanSpawns;
+		ArrayList<Coord> spawns = team == Team.Infected ? this.InfectedSpawns : this.humanSpawns;
 		return spawns;
 	}
 	
@@ -135,10 +135,10 @@ public class Arena {
 	}
 	
 	/**
-	 * @return the zombie spawns
+	 * @return the Infected spawns
 	 */
-	public ArrayList<Coord> getZombieSpawns() {
-		return this.zombieSpawns;
+	public ArrayList<Coord> getInfectedSpawns() {
+		return this.InfectedSpawns;
 	}
 	
 	/**
@@ -207,17 +207,17 @@ public class Arena {
 	}
 	
 	/**
-	 * @param zombieSpawns
-	 *          the zombieSpawns to set
+	 * @param InfectedSpawns
+	 *          the InfectedSpawns to set
 	 */
-	public void setZombieSpawns(ArrayList<Coord> zombieSpawns) {
-		this.zombieSpawns = zombieSpawns;
+	public void setInfectedSpawns(ArrayList<Coord> InfectedSpawns) {
+		this.InfectedSpawns = InfectedSpawns;
 		List<String> spawnList = new ArrayList<String>();
 		
-		for (Coord coord : zombieSpawns)
+		for (Coord coord : InfectedSpawns)
 			spawnList.add(coord.asString());
 		
-		McInfected.getFileManager().getArenas().set(getName() + ".Spawns.Zombies", spawnList);
+		McInfected.getFileManager().getArenas().set(getName() + ".Spawns.Infecteds", spawnList);
 		McInfected.getFileManager().saveArenas();
 	}
 	

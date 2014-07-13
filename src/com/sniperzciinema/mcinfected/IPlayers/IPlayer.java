@@ -26,7 +26,7 @@ public class IPlayer {
 	
 	public static enum Team
 	{
-		Global, Human, Zombie;
+		Global, Human, Infected;
 	};
 	
 	private ItemStack[]	armor;
@@ -54,7 +54,7 @@ public class IPlayer {
 	
 	private Arena				vote;
 	
-	private Kit					zombieKit;
+	private Kit					InfectedKit;
 	
 	public IPlayer(Lobby lobby, Player player)
 	{
@@ -287,7 +287,7 @@ public class IPlayer {
 	 * @return the teams kit
 	 */
 	public Kit getKit(Team team) {
-		return team == Team.Human ? this.humanKit : this.zombieKit;
+		return team == Team.Human ? this.humanKit : this.InfectedKit;
 	}
 	
 	/**
@@ -410,10 +410,10 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @return the zombieKit
+	 * @return the InfectedKit
 	 */
-	public Kit getZombieKit() {
-		return this.zombieKit;
+	public Kit getInfectedKit() {
+		return this.InfectedKit;
 	}
 	
 	/**
@@ -427,13 +427,13 @@ public class IPlayer {
 	/**
 	 * Infect the player
 	 * <ul>
-	 * <li>Set Team to Zombie</li>
+	 * <li>Set Team to Infected</li>
 	 * <li>Change Equipment</li>
 	 * <li>Disguise</li>
 	 * </ul>
 	 */
 	public void infect() {
-		setTeam(Team.Zombie);
+		setTeam(Team.Infected);
 		removeEquipment(Team.Human);
 		equip();
 		disguise();
@@ -470,8 +470,8 @@ public class IPlayer {
 					break;
 			}
 		
-		// If theres no zombies left, choose a new one
-		if ((McInfected.getLobby().getGameState() == GameState.Game) && this.lobby.getZombies().isEmpty())
+		// If theres no Infecteds left, choose a new one
+		if ((McInfected.getLobby().getGameState() == GameState.Game) && this.lobby.getInfecteds().isEmpty())
 			this.lobby.getTimers().chooseAlphas(1);
 		
 		// Remove this players vote
@@ -709,7 +709,7 @@ public class IPlayer {
 		if (team == Team.Human)
 			setHumanKit(kit);
 		else
-			setZombieKit(kit);
+			setInfectedKit(kit);
 	}
 	
 	/**
@@ -838,11 +838,11 @@ public class IPlayer {
 	}
 	
 	/**
-	 * @param zombieKit
-	 *          the zombieKit to set
+	 * @param InfectedKit
+	 *          the InfectedKit to set
 	 */
-	public void setZombieKit(Kit zombieKit) {
-		this.zombieKit = zombieKit;
+	public void setInfectedKit(Kit InfectedKit) {
+		this.InfectedKit = InfectedKit;
 	}
 	
 	/**

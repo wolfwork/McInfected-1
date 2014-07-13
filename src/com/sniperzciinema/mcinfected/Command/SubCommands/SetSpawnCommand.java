@@ -49,8 +49,8 @@ public class SetSpawnCommand extends SubCommand {
 					McInfected.getLobby().getArena(arenaName).addHumanSpawn(coord);
 					break;
 				
-				case Zombie:
-					McInfected.getLobby().getArena(arenaName).addZombieSpawn(coord);
+				case Infected:
+					McInfected.getLobby().getArena(arenaName).addInfectedSpawn(coord);
 					break;
 				
 				default:
@@ -71,7 +71,7 @@ public class SetSpawnCommand extends SubCommand {
 	
 	@Override
 	public FancyMessage getFancyMessage() {
-		return new FancyMessage(getHelpMessage()).tooltip("SetSpawn", " ", "§eSet an Arenas spawns", "Set the possible spawns", "Set spawns per team, by saying what team", "§f§l/McInfected SetSpawn <Arena> [Human/Zombie]").suggest("/McInfected SetSpawn");
+		return new FancyMessage(getHelpMessage()).tooltip("SetSpawn", " ", "§eSet an Arenas spawns", "Set the possible spawns", "Set spawns per team, by saying what team", "§f§l/McInfected SetSpawn <Arena> [Human/Infected]").suggest("/McInfected SetSpawn");
 	}
 	
 	@Override
@@ -96,7 +96,7 @@ public class SetSpawnCommand extends SubCommand {
 			return arenas;
 		}
 		else if (args.length == 2)
-			return Arrays.asList(new String[] { " ", "Human", "Zombie" });
+			return Arrays.asList(new String[] { " ", "Human", "Infected" });
 		else
 			return Arrays.asList(new String[] { "" });
 	}

@@ -107,7 +107,7 @@ public class Combat implements Listener {
 							
 							if (McInfected.getLobby().getHumans().isEmpty())
 							{
-								McInfected.getMessanger().broadcast(McInfected.getMessanger().getMessage(true, Messages.Game__Over__Zombies_Win));
+								McInfected.getMessanger().broadcast(McInfected.getMessanger().getMessage(true, Messages.Game__Over__Infecteds_Win));
 								McInfected.getLobby().getTimers().startEndGame();
 							}
 						}
@@ -151,7 +151,7 @@ public class Combat implements Listener {
 				}
 				if (McInfected.getLobby().getHumans().isEmpty())
 				{
-					McInfected.getMessanger().broadcast(McInfected.getMessanger().getMessage(true, Messages.Game__Over__Zombies_Win));
+					McInfected.getMessanger().broadcast(McInfected.getMessanger().getMessage(true, Messages.Game__Over__Infecteds_Win));
 					McInfected.getLobby().getTimers().startEndGame();
 				}
 			}

@@ -108,8 +108,8 @@ public class IScoreboard implements Listener {
 			ob.getScore("§a§f" + McInfected.getLobby().getHumans().size()).setScore(6);
 			ob.getScore("§2").setScore(5);
 			ob.getScore("§3").setScore(4);
-			ob.getScore("§4§lZombies:").setScore(3);
-			ob.getScore("§c§f" + McInfected.getLobby().getZombies().size()).setScore(2);
+			ob.getScore("§4§lInfecteds:").setScore(3);
+			ob.getScore("§c§f" + McInfected.getLobby().getInfecteds().size()).setScore(2);
 			ob.getScore("§4").setScore(1);
 		}
 		

@@ -24,7 +24,7 @@ public class IMenus {
 	private IconMenu	kitsHuman;
 	private IconMenu	kitsTeam;
 	
-	private IconMenu	kitsZombie;
+	private IconMenu	kitsInfected;
 	
 	public IMenus(IPlayer iPlayer)
 	{
@@ -97,32 +97,32 @@ public class IMenus {
 								public void run() {
 									if (ChatColor.stripColor(event.getName()).equals("Human"))
 										getKitsHuman().open();
-									else if (ChatColor.stripColor(event.getName()).equals("Zombie"))
-										getKitsZombie().open();
+									else if (ChatColor.stripColor(event.getName()).equals("Infected"))
+										getKitsInfected().open();
 								}
 							}, 2);
 						}
 					}, McInfected.getPlugin(), this.iPlayer.getPlayer());
 			
-			ItemStack zombie = new ItemStack(Material.SKULL_ITEM);
-			zombie.setDurability((short) 2);
+			ItemStack Infected = new ItemStack(Material.SKULL_ITEM);
+			Infected.setDurability((short) 2);
 			
 			ItemStack human = new ItemStack(Material.SKULL_ITEM);
 			human.setDurability((short) 3);
 			
-			this.kitsTeam.setOption(3, zombie, ChatColor.RED + "Zombie", McInfected.getMessanger().getMessage(false, Messages.Menu__Team__Choose, "<team>", ChatColor.RED + "Zombie"));
+			this.kitsTeam.setOption(3, Infected, ChatColor.RED + "Infected", McInfected.getMessanger().getMessage(false, Messages.Menu__Team__Choose, "<team>", ChatColor.RED + "Infected"));
 			this.kitsTeam.setOption(5, human, ChatColor.GREEN + "Human", McInfected.getMessanger().getMessage(false, Messages.Menu__Team__Choose, "<team>", ChatColor.GREEN + "Human"));
 		}
 		
 		return this.kitsTeam;
 	}
 	
-	public IconMenu getKitsZombie() {
-		if (this.kitsZombie == null)
+	public IconMenu getKitsInfected() {
+		if (this.kitsInfected == null)
 		{
-			final Team team = Team.Zombie;
-			this.kitsZombie = new IconMenu(
-					RandomChatColor.getColor(ChatColor.GOLD, ChatColor.GREEN, ChatColor.BLUE, ChatColor.RED, ChatColor.DARK_AQUA, ChatColor.YELLOW) + "Zombie Classes",
+			final Team team = Team.Infected;
+			this.kitsInfected = new IconMenu(
+					RandomChatColor.getColor(ChatColor.GOLD, ChatColor.GREEN, ChatColor.BLUE, ChatColor.RED, ChatColor.DARK_AQUA, ChatColor.YELLOW) + "Infected Classes",
 					((McInfected.getKitManager().getKits(team).size() / 9) * 9) + 18, new IconMenu.OptionClickEventHandler()
 					{
 						
@@ -140,7 +140,7 @@ public class IMenus {
 								}, 2);
 							else
 							{
-								IMenus.this.iPlayer.getPlayer().sendMessage(McInfected.getMessanger().getMessage(false, Messages.Menu__Kit__Chosen, "<kit>", event.getName(), "<team>", "Zombie"));
+								IMenus.this.iPlayer.getPlayer().sendMessage(McInfected.getMessanger().getMessage(false, Messages.Menu__Kit__Chosen, "<kit>", event.getName(), "<team>", "Infected"));
 								IMenus.this.iPlayer.setKit(team, McInfected.getKitManager().getKit(ChatColor.stripColor(event.getName())));
 							}
 						}
@@ -148,7 +148,7 @@ public class IMenus {
 			int i = 0;
 			for (Kit kit : McInfected.getKitManager().getKits(team))
 			{
-				if (this.iPlayer.getPlayer().hasPermission("McInfected.Kits.Zombie.*") || this.iPlayer.getPlayer().hasPermission("McInfected.Kits.Zombie." + kit.getName()))
+				if (this.iPlayer.getPlayer().hasPermission("McInfected.Kits.Infected.*") || this.iPlayer.getPlayer().hasPermission("McInfected.Kits.Infected." + kit.getName()))
 				{
 					ItemStack item = kit.getIcon();
 					
@@ -157,13 +157,13 @@ public class IMenus {
 					for (String line : kit.getDescription())
 						desc.append(line + "<split>");
 					
-					this.kitsZombie.setOption(i, item, kit.getName(), ChatColor.GREEN + McInfected.getMessanger().getMessage(false, Messages.Menu__Kit__Choose), "", StringUtil.addColor(desc.toString()), "");
+					this.kitsInfected.setOption(i, item, kit.getName(), ChatColor.GREEN + McInfected.getMessanger().getMessage(false, Messages.Menu__Kit__Choose), "", StringUtil.addColor(desc.toString()), "");
 					i++;
 				}
-				this.kitsZombie.setOption(i + (9 - i) + 4, new ItemStack(Material.NETHER_STAR), "Return", McInfected.getMessanger().getMessage(false, Messages.Menu__Kit__Return));
+				this.kitsInfected.setOption(i + (9 - i) + 4, new ItemStack(Material.NETHER_STAR), "Return", McInfected.getMessanger().getMessage(false, Messages.Menu__Kit__Return));
 			}
 		}
-		return this.kitsZombie;
+		return this.kitsInfected;
 	}
 	
 	public IconMenu getVote() {

@@ -48,7 +48,7 @@ Game:
   Over:
     Notification: '&eThe game has ended!'
     Humans Win: '&aThe Humans have survived!'
-    Zombies Win: '&cAll Humans have been infected!'
+    Infecteds Win: '&cAll Humans have been infected!'
   Time:
     Voting: 'Voting ends in &f<time>'
     Infecting: '&eThe virus will be released in &f<time>'
@@ -83,7 +83,7 @@ Death Messages:
     Bow: '&c<killed> has been shot by &a<killer>'
     Potion: '&c<killed> has been exploded by &a<killer>'
     Other: '&a<killer> has assisted in killing &c<killed>'
-  Zombie:
+  Infected:
     Sword: '&c<killed> has been killed by &a<killer>'
     Bow: '&c<killed> has been shot by &a<killer>'
     Potion: '&c<killed> has been exploded by &a<killer>'

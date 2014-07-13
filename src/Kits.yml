@@ -20,7 +20,7 @@ Human:
     Description:
     - '&fBlend in to the crowd'
     - '&fand keep on running!'
-Zombie:
+Infected:
   Zombie:
     Icon: id:367
     Inventory:
@@ -30,7 +30,7 @@ Zombie:
       Chestplate: id:299
       Leggings: id:300
       Boots: id:305
-    Disguise: Zombie
+    Disguise: Infected
     Description:
     - '&cBbbbllllaahahhhh'
   Skeleton:

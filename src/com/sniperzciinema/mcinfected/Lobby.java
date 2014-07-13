@@ -174,14 +174,14 @@ public class Lobby {
 	}
 	
 	/**
-	 * @return a list of zombies
+	 * @return a list of Infecteds
 	 */
-	public ArrayList<IPlayer> getZombies() {
-		ArrayList<IPlayer> zombies = new ArrayList<IPlayer>();
+	public ArrayList<IPlayer> getInfecteds() {
+		ArrayList<IPlayer> Infecteds = new ArrayList<IPlayer>();
 		for (IPlayer player : this.players)
-			if (player.getTeam() == Team.Zombie)
-				zombies.add(player);
-		return zombies;
+			if (player.getTeam() == Team.Infected)
+				Infecteds.add(player);
+		return Infecteds;
 	}
 	
 	public boolean isArena(String arenaName) {

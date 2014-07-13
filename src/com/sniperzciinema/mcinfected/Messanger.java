@@ -44,7 +44,7 @@ public class Messanger {
 		Game__Infecting,
 		Game__Over__Humans_Win,
 		Game__Over__Notification,
-		Game__Over__Zombies_Win,
+		Game__Over__Infecteds_Win,
 		Game__Time__Game,
 		Game__Time__Infecting,
 		Game__Time__Measurements__Minute,

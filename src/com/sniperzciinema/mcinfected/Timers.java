@@ -42,39 +42,39 @@ public class Timers {
 		
 		for (int i = 0; i != toInfect; i++)
 		{
-			IPlayer newZombie;
+			IPlayer newInfected;
 			do
 			{
 				Random random = new Random(System.currentTimeMillis());
 				int x = random.nextInt(this.lobby.getIPlayers().size());
-				newZombie = this.lobby.getIPlayers().get(x);
+				newInfected = this.lobby.getIPlayers().get(x);
 				
 				// Have a safety just incase something goes horribly wrong
 				y++;
 				if (y == 50)
 				{
-					newZombie = null;
+					newInfected = null;
 					break;
 				}
 				
-			} while (newZombie.getTeam() == Team.Zombie);
-			if (newZombie != null)
+			} while (newInfected.getTeam() == Team.Infected);
+			if (newInfected != null)
 			{
-				McInfectedInfectEvent event = new McInfectedInfectEvent(newZombie.getPlayer());
+				McInfectedInfectEvent event = new McInfectedInfectEvent(newInfected.getPlayer());
 				Bukkit.getPluginManager().callEvent(event);
 				if (!event.isCancelled())
 				{
 					
 					for (IPlayer iPlayer : McInfected.getLobby().getIPlayers())
-						if (iPlayer != newZombie)
-							iPlayer.getPlayer().sendMessage(McInfected.getMessanger().getMessage(true, Messages.Game__Infected, "<player>", newZombie.getPlayer().getName()));
+						if (iPlayer != newInfected)
+							iPlayer.getPlayer().sendMessage(McInfected.getMessanger().getMessage(true, Messages.Game__Infected, "<player>", newInfected.getPlayer().getName()));
 					
-					newZombie.infect();
+					newInfected.infect();
 					
-					String[] face = PictureUtil.getZombie();
+					String[] face = PictureUtil.getInfected();
 					face[2] = face[2] + "     " + McInfected.getMessanger().getMessage(false, Messages.Picture__Infected__You);
 					face[3] = face[3] + "     " + McInfected.getMessanger().getMessage(false, Messages.Picture__Infected__To_Win);
-					newZombie.getPlayer().sendMessage(face);
+					newInfected.getPlayer().sendMessage(face);
 				}
 			}
 			else
@@ -226,8 +226,8 @@ public class Timers {
 			if (iPlayer.getHumanKit() == null)
 				iPlayer.setKit(Team.Human, iPlayer.chooseRandomKit(Team.Human));
 			
-			if (iPlayer.getZombieKit() == null)
-				iPlayer.setKit(Team.Zombie, iPlayer.chooseRandomKit(Team.Zombie));
+			if (iPlayer.getInfectedKit() == null)
+				iPlayer.setKit(Team.Infected, iPlayer.chooseRandomKit(Team.Infected));
 			
 			iPlayer.getiScoreboard().update();
 			iPlayer.equip();
