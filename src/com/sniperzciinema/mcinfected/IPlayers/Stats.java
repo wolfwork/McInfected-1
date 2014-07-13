@@ -4,6 +4,7 @@ package com.sniperzciinema.mcinfected.IPlayers;
 import java.sql.SQLException;
 import java.util.UUID;
 
+import org.bukkit.Bukkit;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
@@ -32,6 +33,12 @@ public class Stats {
 	public Stats(UUID uuid)
 	{
 		this.uuid = uuid;
+	}
+	
+	@SuppressWarnings("deprecation")
+	public Stats(String name)
+	{
+		this.uuid = Bukkit.getOfflinePlayer(name).getUniqueId();
 	}
 	
 	/**

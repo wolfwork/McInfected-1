@@ -70,7 +70,9 @@ public class Messanger {
 		Sign__Shop__Purchased,
 		Command__Reloaded,
 		Error__Misc__Cant_Use_Command,
-		Game__Voting;
+		Game__Voting,
+		Command__Remove,
+		Error__Arena__Doesnt_Exists;
 	};
 	
 	private FileManager	fileManager;

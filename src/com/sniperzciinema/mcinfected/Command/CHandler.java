@@ -21,6 +21,7 @@ import com.sniperzciinema.mcinfected.Command.SubCommands.HelpCommand;
 import com.sniperzciinema.mcinfected.Command.SubCommands.JoinCommand;
 import com.sniperzciinema.mcinfected.Command.SubCommands.KitCommand;
 import com.sniperzciinema.mcinfected.Command.SubCommands.LeaveCommand;
+import com.sniperzciinema.mcinfected.Command.SubCommands.RemoveCommand;
 import com.sniperzciinema.mcinfected.Command.SubCommands.SetLobbyCommand;
 import com.sniperzciinema.mcinfected.Command.SubCommands.SetSpawnCommand;
 import com.sniperzciinema.mcinfected.Command.SubCommands.VoteCommand;
@@ -41,6 +42,7 @@ public class CHandler implements TabCompleter, CommandExecutor {
 		registerSubCommand(new JoinCommand());
 		registerSubCommand(new KitCommand());
 		registerSubCommand(new LeaveCommand());
+		registerSubCommand(new RemoveCommand());
 		registerSubCommand(new SetLobbyCommand());
 		registerSubCommand(new SetSpawnCommand());
 		registerSubCommand(new VoteCommand());
@@ -121,7 +123,6 @@ public class CHandler implements TabCompleter, CommandExecutor {
 			for (SubCommand subCommand : this.commands)
 				if (subCommand.getName().equalsIgnoreCase(args[0]) || subCommand.getAliases().contains(args[0].toLowerCase()))
 					params = subCommand.getTabs(args);
-			System.out.println(params);
 			if (params != null)
 				return TabCompletionHelper.getPossibleCompletionsForGivenArgs(args, params);
 		}

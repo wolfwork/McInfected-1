@@ -74,6 +74,17 @@ public class Lobby {
 	}
 	
 	/**
+	 * Remove an arena from McInfected and the Arenas.yml
+	 * 
+	 * @param arena
+	 */
+	public void removeArena(Arena arena) {
+		this.arenas.remove(arena);
+		McInfected.getFileManager().getArenas().set(arena.getName(), null);
+		McInfected.getFileManager().saveArenas();
+	}
+	
+	/**
 	 * @param arenaName
 	 * @return the arena by the name
 	 */

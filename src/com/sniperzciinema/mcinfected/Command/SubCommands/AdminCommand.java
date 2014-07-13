@@ -5,15 +5,19 @@ import java.util.Arrays;
 import java.util.List;
 
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.CommandException;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.entity.Player;
 
+import com.sniperzciinema.mcinfected.FileManager;
 import com.sniperzciinema.mcinfected.Lobby.GameState;
 import com.sniperzciinema.mcinfected.McInfected;
 import com.sniperzciinema.mcinfected.Messanger.Messages;
 import com.sniperzciinema.mcinfected.Command.SubCommand;
 import com.sniperzciinema.mcinfected.Command.FancyMessages.FancyMessage;
+import com.sniperzciinema.mcinfected.IPlayers.Stats;
 import com.sniperzciinema.mcinfected.Utils.ItemUtil;
 
 
@@ -93,11 +97,130 @@ public class AdminCommand extends SubCommand {
 	}
 	
 	private void edit(CommandSender sender, String[] args) {
-		
+		// /McInfected Admin Edit <Stat> <Player> <NewValue>
+		if (!sender.hasPermission(getPermission() + ".Files"))
+			sender.sendMessage(McInfected.getMessanger().getMessage(true, Messages.Error__Misc__Invalid_Permission));
+		else
+		{
+			if (args.length == 5)
+			{
+				Stats stats = new Stats(args[3]);
+				String stat = args[2].toLowerCase();
+				int newValue = Integer.valueOf(args[4]);
+				switch (stat)
+				{
+					case "kills":
+						stats.setKills(newValue);
+						break;
+					case "deaths":
+						stats.setDeaths(newValue);
+						break;
+					case "wins":
+						stats.setWins(newValue);
+						break;
+					case "losses":
+						stats.setLosses(newValue);
+						break;
+					case "killstreak":
+						stats.setKillStreak(newValue);
+						break;
+					default:
+						sender.sendMessage("That's not a valid stat!");
+						break;
+				}
+			}
+			else
+			{
+				if (sender instanceof Player)
+					getFancyMessage().send((Player) sender);
+				else
+					sender.sendMessage(getHelpMessage());
+			}
+			
+		}
 	}
 	
 	private void files(CommandSender sender, String[] args) {
 		
+		if (!sender.hasPermission(getPermission() + ".Files"))
+			sender.sendMessage(McInfected.getMessanger().getMessage(true, Messages.Error__Misc__Invalid_Permission));
+		else
+		{
+			FileManager fm = McInfected.getFileManager();
+			Configuration config = null;
+			// /mcinfected admin files <file> <get/set/read> <value> <newvalue>
+			if (args.length > 4)
+			{
+				if (args[2].equalsIgnoreCase("Config"))
+					config = fm.getConfig();
+				else if (args[2].equalsIgnoreCase("Arenas"))
+					config = fm.getArenas();
+				else if (args[2].equalsIgnoreCase("Kits"))
+					config = fm.getKits();
+				else if (args[2].equalsIgnoreCase("Messages"))
+					config = fm.getMessages();
+				else if (args[2].equalsIgnoreCase("Players"))
+					config = fm.getPlayers();
+				else if (args[2].equalsIgnoreCase("Shops"))
+					config = fm.getShops();
+				else if (args[2].equalsIgnoreCase("CommandSets"))
+					config = fm.getCommandSets();
+				if (config == null)
+					sender.sendMessage("Invalid File, please use: Config, Arenas, Kits, Messages, Players, Shops, CommandSets");
+				
+				else if (args[3].equalsIgnoreCase("Read"))
+				{
+					
+					for (String path : config.getConfigurationSection("").getKeys(true))
+						if (!config.getString(path).startsWith("MemorySection"))
+							sender.sendMessage(ChatColor.YELLOW + path.replaceAll(" ", "_") + ChatColor.WHITE + ": " + ChatColor.GRAY + config.getString(path).replaceAll(" ", "_"));
+					
+				}
+				else if (args.length >= 5)
+				{
+					if (args[3].equalsIgnoreCase("Get"))
+					{
+						String path = args[4];
+						path.replaceAll("_", " ");
+						String value = config.getString(path);
+						sender.sendMessage(ChatColor.YELLOW + path + ": " + ChatColor.GRAY + value);
+					}
+					else if (args.length == 5 && args[3].equalsIgnoreCase("Set"))
+					{
+						String path = args[4];
+						String newValue = args[4];
+						path.replaceAll("_", " ");
+						newValue.replaceAll("_", " ");
+						config.set(path, newValue);
+						fm.saveAll();
+						sender.sendMessage(ChatColor.GREEN + "Set: " + ChatColor.YELLOW + path + ChatColor.GREEN + " To the value: " + ChatColor.GRAY + newValue);
+					}
+					else
+					{
+						if (sender instanceof Player)
+							getFancyMessage().send((Player) sender);
+						else
+							sender.sendMessage(getHelpMessage());
+					}
+					
+				}
+				else
+				{
+					if (sender instanceof Player)
+						getFancyMessage().send((Player) sender);
+					else
+						sender.sendMessage(getHelpMessage());
+				}
+				
+			}
+			else
+			{
+				if (sender instanceof Player)
+					getFancyMessage().send((Player) sender);
+				else
+					sender.sendMessage(getHelpMessage());
+			}
+		}
 	}
 	
 	@Override
@@ -141,7 +264,7 @@ public class AdminCommand extends SubCommand {
 	
 	@Override
 	public FancyMessage getFancyMessage() {
-		return new FancyMessage(getHelpMessage()).tooltip("Admin", " ", "§eManage admin settings", " ", "§6§n§lPossible Commands: ", "§a/McInfected ItemCode §f<- See an items code ", "§a/McInfected Reload §f<- Reload all files", "§a/McInfected Edit <Stat> <Player> <New Value>  §f<- Edit a players stats", "§a/McInfected Files <File> <Get/Set/Read> §f<- Manage a file ", " ", "§f§l/McInfected Admin [ItemCode/Reload/Edit/Files]").suggest("/McInfected Admin");
+		return new FancyMessage(getHelpMessage()).tooltip("Admin", " ", "§eManage admin settings", " ", "§6§n§lPossible Commands: ", "§a/McInfected ItemCode §f<- See an items code ", "§a/McInfected Reload   §f<- Reload all files", "§a/McInfected Edit <Stat> <Player> <New Value> ", "   §f^ Possible Stats: §7Kills/Deaths/Wins/Losses/KillStreak", "   §f^ Set a player's stats", "§a/McInfected Files <File> <Get/Set/Read> [Path] [NewValue]", "   §f^ Possible Files: §7Config/Kit/Arena/Messages/Shop", "   §f^ Manage a file ", " ", "§f§l/McInfected Admin [ItemCode/Reload/Edit/Files]").suggest("/McInfected Admin");
 	}
 	
 	@Override
