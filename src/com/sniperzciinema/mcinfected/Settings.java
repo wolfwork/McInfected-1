@@ -26,7 +26,12 @@ public class Settings {
 	public double getGameInfectingAlphaPercent() {
 		return this.fileManager.getConfig().getDouble("Game.Infecting.Alpha Percent");
 	}
-	
+	/**
+	 * @return the infecting alpha percent
+	 */
+	public double getGameHumanAlphaPercent() {
+		return this.fileManager.getConfig().getDouble("Game.Infecting.HumanAlpha Percent");
+	}
 	/**
 	 * @return MySQL database
 	 */
