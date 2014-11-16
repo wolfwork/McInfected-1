@@ -16,7 +16,8 @@ Time:
   Game: 500
 Game:
   Infecting:
-    Alpha Percent: 0.25
+    Alpha Percent: 0.125
+    HumanAlpha Percent: 0.125
 Updates:
   Check: true
   Download: false
